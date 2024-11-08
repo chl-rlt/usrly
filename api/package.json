@@ -1,0 +1,42 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "main": "index.js",
+  "volta": {
+    "node": "22.11.0"
+  },
+  "scripts": {
+    "cache-install": "npm ci --cache .npm --prefer-offline --no-fund --no-audit",
+    "post-install": "prisma generate",
+    "dev": "tsx watch --inspect=0.0.0.0:9229 -- index.ts",
+    "build": "npx esbuild index.ts --bundle --packages=external --platform=node --target=node20 --outdir=dist --format=cjs",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.14.0",
+    "@tsconfig/node20": "^20.1.4",
+    "@types/eslint__js": "^8.42.3",
+    "@types/eslint-config-prettier": "^6.11.3",
+    "@types/node": "^22.9.0",
+    "@vitest/eslint-plugin": "^1.1.7",
+    "eslint": "^9.14.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.3.3",
+    "prisma": "^5.22.0",
+    "tsx": "^4.19.2",
+    "typescript": "~5.6.2",
+    "typescript-eslint": "^8.13.0",
+    "vite": "^5.4.10",
+    "vitest": "^2.1.4"
+  },
+  "dependencies": {
+    "@fastify/swagger": "^9.2.0",
+    "@fastify/swagger-ui": "^5.1.0",
+    "@prisma/client": "^5.22.0",
+    "fastify": "^5.1.0",
+    "fastify-healthcheck": "^5.0.0",
+    "fastify-type-provider-zod": "^4.0.2",
+    "zod": "^3.23.8"
+  }
+}
