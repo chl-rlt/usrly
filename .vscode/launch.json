@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Usrly API",
+            "type": "node",
+            "request": "attach",
+            "localRoot": "${workspaceFolder}",
+            "remoteRoot": "/app",
+            "port": 9229,
+            "restart": true
+        }
+    ]
+}
