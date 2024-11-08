@@ -5,8 +5,8 @@
             "name": "Usrly API",
             "type": "node",
             "request": "attach",
-            "localRoot": "${workspaceFolder}",
-            "remoteRoot": "/app",
+            "localRoot": "${workspaceFolder}/api",
+            "remoteRoot": "/api",
             "port": 9229,
             "restart": true
         }
