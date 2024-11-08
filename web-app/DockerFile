@@ -1,0 +1,10 @@
+FROM node:20-alpine AS base
+WORKDIR /app
+
+FROM base AS installer
+WORKDIR /app
+COPY package*.json ./
+COPY .npm .npm
+RUN npm run cache-install
+COPY . .
+RUN npm run cache-install && npm run typecheck && npm run build
