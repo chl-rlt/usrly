@@ -35,7 +35,7 @@ services:
     <<: *api
     restart: no
     command: >
-      sh -c "npx prisma migrate dev"
+      sh -c "npx prisma migrate dev && npx prisma -- db seed"
     ports: []
 
   prisma-studio:
