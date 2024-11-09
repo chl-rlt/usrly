@@ -6,6 +6,7 @@ import { registerSwagger } from "./src/plugins/swagger";
 import { registerZodTypeProvider } from "./src/plugins/zod";
 import registerFastifyJWT from "./src/plugins/jwt";
 import { fastifyAuth } from "@fastify/auth";
+import fastifyCors from "@fastify/cors";
 
 export const server = Fastify({
   logger: true,
@@ -19,6 +20,11 @@ void server.register(fastifyAuth);
 
 void registerSwagger(server);
 void registerFastifyJWT(server);
+
+void server.register(fastifyCors, {
+  origin: "http://localhost:5173",
+  methods: ["GET", "POST", "OPTIONS"],
+});
 
 server.after(() => {
   initRoutes();
