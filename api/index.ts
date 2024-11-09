@@ -23,7 +23,7 @@ void registerFastifyJWT(server);
 
 void server.register(fastifyCors, {
   origin: "http://localhost:5173",
-  methods: ["GET", "POST", "OPTIONS"],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
 });
 
 server.after(() => {
