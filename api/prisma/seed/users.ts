@@ -13,8 +13,6 @@ export async function seedUsers() {
     return;
   }
 
-  const cryptedFakerPassword = await hashPassword(faker.internet.password());
-
   const UserFactory = defineUserFactory({
     defaultData: async () => {
       const firstName = faker.person.firstName();
@@ -28,6 +26,12 @@ export async function seedUsers() {
       });
       return { firstName, lastName, email, birthDate, password };
     },
+  });
+
+  // create dev user
+  await UserFactory.create({
+    email: "dev@example.com",
+    password: await hashPassword("dev123"),
   });
 
   await UserFactory.createList(30);
