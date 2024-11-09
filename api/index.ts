@@ -4,6 +4,8 @@ import { ZodTypeProvider } from "fastify-type-provider-zod";
 import { initRoutes } from "./src/routes";
 import { registerSwagger } from "./src/plugins/swagger";
 import { registerZodTypeProvider } from "./src/plugins/zod";
+import registerFastifyJWT from "./src/plugins/jwt";
+import { fastifyAuth } from "@fastify/auth";
 
 export const server = Fastify({
   logger: true,
@@ -13,7 +15,10 @@ registerZodTypeProvider(server);
 
 void server.register(fastifyHealthcheck);
 
+void server.register(fastifyAuth);
+
 void registerSwagger(server);
+void registerFastifyJWT(server);
 
 server.after(() => {
   initRoutes();

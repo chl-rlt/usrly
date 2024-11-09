@@ -11,11 +11,22 @@ export async function registerSwagger(server: FastifyInstance) {
         description: "Documentation de l'API Usrly",
         version: "1.0.0",
       },
+      components: {
+        securitySchemes: {
+          bearer: {
+            type: "http",
+            scheme: "bearer",
+            bearerFormat: "JWT",
+          },
+        },
+        schemas: {},
+      },
+      security: [{ bearer: [] }],
     },
     transform: jsonSchemaTransform,
   });
 
   await server.register(swaggerUi, {
-    routePrefix: "/",
+    routePrefix: "/api",
   });
 }
