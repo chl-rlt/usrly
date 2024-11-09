@@ -22,7 +22,7 @@ export default function getUsers() {
     url: "/v1/users",
     preHandler: server.auth([verifyJWT]),
     schema: {
-      tags: ["Utilisateurs"],
+      tags: ["Users"],
       querystring: querystringSchema,
     },
     handler: async (request, reply) => {
