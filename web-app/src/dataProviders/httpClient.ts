@@ -1,8 +1,7 @@
 import { fetchUtils } from "react-admin";
 
+const apiUrl = import.meta.env.VITE_API_URL;
 export type Options = Parameters<typeof fetchUtils.fetchJson>[1];
-
-const apiUrl: string = import.meta.env.VITE_API_URL;
 export const httpClient = async (url: string, options: Options = {}) => {
   options.headers = new Headers({
     Accept: "application/json",
@@ -12,6 +11,5 @@ export const httpClient = async (url: string, options: Options = {}) => {
   const { token } = JSON.parse(localStorage.getItem("auth") || "{}");
   options.headers.set("Authorization", `Bearer ${token}`);
 
-  const response = await fetchUtils.fetchJson(`${apiUrl}${url}`, options);
-  return response;
+  return fetchUtils.fetchJson(apiUrl + url, options);
 };
