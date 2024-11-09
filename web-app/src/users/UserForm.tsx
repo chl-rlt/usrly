@@ -1,16 +1,25 @@
 import {
   DateInput,
+  DeleteButton,
   email,
   maxLength,
-  minValue,
   required,
+  SaveButton,
   SimpleForm,
   TextInput,
+  Toolbar,
 } from "react-admin";
 import { Grid, Typography, Box } from "@mui/material";
+
+const UserFormToolbar = () => (
+  <Toolbar sx={{ justifyContent: "space-between" }}>
+    <SaveButton />
+    <DeleteButton mutationMode="pessimistic" />
+  </Toolbar>
+);
 export default function UserForm() {
   return (
-    <SimpleForm warnWhenUnsavedChanges>
+    <SimpleForm warnWhenUnsavedChanges toolbar={<UserFormToolbar />}>
       <Grid container width={{ xs: "100%", xl: 900 }} spacing={2}>
         <Grid item xs={12} md={7}>
           <Typography variant="h6" gutterBottom>

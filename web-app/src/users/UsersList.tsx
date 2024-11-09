@@ -5,6 +5,7 @@ import {
   EmailField,
   DateField,
   SearchInput,
+  BulkDeleteButton,
 } from "react-admin";
 const filters = [
   <SearchInput source="email" alwaysOn placeholder="Search by email" />,
@@ -17,7 +18,10 @@ export const UsersList = () => {
       sort={{ field: "email", order: "ASC" }}
       filters={filters}
     >
-      <Datagrid rowClick="edit" cellSpacing={0}>
+      <Datagrid
+        rowClick="edit"
+        bulkActionButtons={<BulkDeleteButton mutationMode="pessimistic" />}
+      >
         <TextField source="lastName" label="Last name" />
         <TextField source="firstName" label="First name" />
         <DateField source="birthDate" label="Birth date" />
