@@ -1,10 +1,4 @@
-import {
-  Admin,
-  Authenticated,
-  CustomRoutes,
-  radiantDarkTheme,
-  Resource,
-} from "react-admin";
+import { Admin, CustomRoutes, radiantDarkTheme, Resource } from "react-admin";
 import { authProvider } from "./dataProviders/auth";
 import LoginPage from "./auth/LoginPage";
 import { UsersList } from "./users/UsersList";

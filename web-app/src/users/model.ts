@@ -8,4 +8,5 @@ export type User = {
   email: string;
   password: string;
   passwordConfirm: string;
+  newPassword: string;
 };
