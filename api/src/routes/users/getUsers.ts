@@ -27,6 +27,7 @@ export default function getUsers() {
     },
     handler: async (request, reply) => {
       const { page, limit, ordering, email } = request.query;
+      const currentUser = request.user as { id: string };
       // https://github.com/prisma/prisma/issues/7550
       const [users, count] = await prisma.$transaction([
         prisma.user.findMany({
@@ -36,6 +37,10 @@ export default function getUsers() {
             email: {
               contains: email,
               mode: "insensitive",
+            },
+            // exclude current user
+            id: {
+              not: currentUser.id,
             },
           },
           select: {
