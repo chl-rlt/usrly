@@ -4,7 +4,7 @@ import { prisma } from "../../../prisma/prisma";
 import { hashPassword } from "../../utils";
 import { verifyJWT } from "../../plugins/jwt";
 import { passwordSchema } from "./schemas";
-import { createTransporter } from "../../plugins/nodemailer";
+import { createTransporter, sendEmail } from "../../plugins/nodemailer";
 
 const createUserRequestBody = z.object({
   email: z.string().email(),
@@ -45,7 +45,6 @@ export default function createUserEndpoint() {
         },
       });
       const token = server.jwt.sign({ id: user.id }, { expiresIn: "1d" });
-      const transporter = await createTransporter();
       const resetPasswordLink = `${process.env.CLIENT_URL}#/reset-password/${token}`;
       const mailOptions = {
         from: "no-reply@usrly",
@@ -53,7 +52,9 @@ export default function createUserEndpoint() {
         to: user.email,
         html: `<p>Hi ${user.firstName}, you are invited to join the Usrly application. To accept the invitation click on this <a href="${resetPasswordLink}">link</a> and create a new password</p>`,
       };
-      await transporter.sendMail(mailOptions);
+
+      await sendEmail(mailOptions);
+
       return user;
     },
   });
