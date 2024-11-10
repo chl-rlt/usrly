@@ -2,7 +2,7 @@ import { httpClient } from "./httpClient";
 
 export const authProvider = {
   async login({ username, password }: { username: string; password: string }) {
-    const response = await httpClient("/v1/auth/token", {
+    const response = await httpClient(`/v1/auth/token`, {
       method: "POST",
       body: JSON.stringify({ email: username, password }),
     });
@@ -18,7 +18,7 @@ export const authProvider = {
   },
   async checkAuth() {
     if (!localStorage.getItem("auth")) {
-      throw new Error("login.required");
+      throw new Error("Authentification required");
     }
   },
   async logout() {
