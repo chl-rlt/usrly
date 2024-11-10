@@ -23,6 +23,14 @@ export default function createUserEndpoint() {
       tags: ["Users"],
     },
     handler: async (request, reply) => {
+      const userAlreadyExists = await prisma.user.findFirst({
+        where: {
+          email: request.body.email,
+        },
+      });
+      if (userAlreadyExists) {
+        throw new Error("User already exists");
+      }
       const cryptedPassword = await hashPassword(request.body.password);
       const user = await prisma.user.create({
         data: {
