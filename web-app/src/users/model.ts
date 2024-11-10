@@ -1,5 +1,7 @@
+import { Identifier } from "react-admin";
+
 export type User = {
-  id: number;
+  id: Identifier;
   firstName: string;
   lastName: string;
   birthDate: Date;
