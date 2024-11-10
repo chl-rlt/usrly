@@ -2,11 +2,14 @@ import z from "zod";
 import { server } from "../../..";
 import { prisma } from "../../../prisma/prisma";
 import { verifyJWT } from "../../plugins/jwt";
+import { hashPassword } from "../../utils";
+import { passwordSchema } from "./schemas";
 const updateUserRequestBody = z.object({
   email: z.string().email(),
   firstName: z.string().nullish(),
   lastName: z.string().nullish(),
   birthDate: z.string().nullish(),
+  newPassword: passwordSchema.nullish(),
 });
 export default function updateUser() {
   server.route({
@@ -32,6 +35,10 @@ export default function updateUser() {
           birthDate: request.body.birthDate
             ? new Date(request.body.birthDate)
             : undefined,
+          password: request.body.newPassword
+            ? await hashPassword(request.body.newPassword)
+            : undefined,
+          updatedAt: new Date(),
         },
       });
       return user;

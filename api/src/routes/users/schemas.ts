@@ -40,3 +40,20 @@ export function getPrismaPagination(page: number, limit: number) {
 export function escapeRegExp(string: string) {
   return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // $& means the whole matched string
 }
+
+export const passwordSchema = z
+  .string()
+  .min(8, { message: "Le mot de passe doit contenir au moins 8 caractères" })
+  .max(20, { message: "Le mot de passe doit contenir au plus 20 caractères" })
+  .refine((password) => /[A-Z]/.test(password), {
+    message: "Le mot de passe doit contenir au moins une lettre majuscule",
+  })
+  .refine((password) => /[a-z]/.test(password), {
+    message: "Le mot de passe doit contenir au moins une lettre minuscule",
+  })
+  .refine((password) => /[0-9]/.test(password), {
+    message: "Le mot de passe doit contenir au moins un chiffre",
+  })
+  .refine((password) => /[!@#$%^&*]/.test(password), {
+    message: "Le mot de passe doit contenir au moins un caractere special",
+  });
