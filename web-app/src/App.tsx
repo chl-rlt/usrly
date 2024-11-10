@@ -7,6 +7,7 @@ import { User } from "./users/model";
 import { baseDataProvider } from "./dataProviders/base";
 import UserCreate from "./users/UserCreate";
 import UserEdit from "./users/UserEdit";
+import Layout from "./layout/Layout";
 
 export default function App() {
   return (
@@ -15,6 +16,7 @@ export default function App() {
       authProvider={authProvider}
       loginPage={LoginPage}
       theme={radiantDarkTheme}
+      layout={Layout}
     >
       <Resource
         name="users"

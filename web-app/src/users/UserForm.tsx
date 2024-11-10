@@ -8,22 +8,30 @@ import {
   SimpleForm,
   TextInput,
   Toolbar,
+  useRecordContext,
 } from "react-admin";
 import { Grid, Typography, Box } from "@mui/material";
+import { User } from "./model";
+import { userIsCurrentUser } from "../utils";
 
-const UserFormToolbar = () => (
+const UserFormToolbar = ({ isCurrentUser }: { isCurrentUser: boolean }) => (
   <Toolbar sx={{ justifyContent: "space-between" }}>
     <SaveButton />
-    <DeleteButton mutationMode="pessimistic" />
+    {!isCurrentUser && <DeleteButton mutationMode="pessimistic" />}
   </Toolbar>
 );
 export default function UserForm() {
+  const record = useRecordContext<User>();
+  const isCurrentUser = userIsCurrentUser(record?.id!);
   return (
-    <SimpleForm warnWhenUnsavedChanges toolbar={<UserFormToolbar />}>
+    <SimpleForm
+      warnWhenUnsavedChanges
+      toolbar={<UserFormToolbar isCurrentUser={isCurrentUser} />}
+    >
       <Grid container width={{ xs: "100%", xl: 900 }} spacing={2}>
         <Grid item xs={12} md={7}>
-          <Typography variant="h6" gutterBottom>
-            User information
+          <Typography variant="h6" gutterBottom sx={{ mb: 2 }}>
+            {isCurrentUser ? "My information" : "User information"}
           </Typography>
           <TextInput
             source="email"
