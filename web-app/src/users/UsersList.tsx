@@ -13,7 +13,7 @@ const filters = [
 export const UsersList = () => {
   return (
     <List
-      title="Users"
+      title={false}
       exporter={false}
       sort={{ field: "email", order: "ASC" }}
       filters={filters}
