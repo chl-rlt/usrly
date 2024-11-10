@@ -1,4 +1,10 @@
-import { Admin, radiantDarkTheme, Resource } from "react-admin";
+import {
+  Admin,
+  Authenticated,
+  CustomRoutes,
+  radiantDarkTheme,
+  Resource,
+} from "react-admin";
 import { authProvider } from "./dataProviders/auth";
 import LoginPage from "./auth/LoginPage";
 import { UsersList } from "./users/UsersList";
@@ -8,6 +14,8 @@ import { baseDataProvider } from "./dataProviders/base";
 import UserCreate from "./users/UserCreate";
 import UserEdit from "./users/UserEdit";
 import Layout from "./layout/Layout";
+import ResetPassword from "./auth/ResetPassword";
+import { Route } from "react-router-dom";
 
 export default function App() {
   return (
@@ -28,6 +36,10 @@ export default function App() {
           `${record.firstName} ${record.lastName}`
         }
       />
+
+      <CustomRoutes noLayout>
+        <Route path="/reset-password/:token" element={<ResetPassword />} />
+      </CustomRoutes>
     </Admin>
   );
 }

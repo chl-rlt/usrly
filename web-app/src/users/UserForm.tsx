@@ -118,7 +118,7 @@ const equalToPassword = (value: string, allValues: any) => {
   }
 };
 
-const validatePassword = (value: string) => {
+export const validatePassword = (value: string) => {
   if (value.length < 8) {
     return "The password must be at least 8 characters long";
   }
