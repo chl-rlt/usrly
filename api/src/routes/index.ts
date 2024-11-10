@@ -1,4 +1,5 @@
 import initAuthRoute from "./auth";
+import createUser from "./users/createUser";
 import deleteUser from "./users/deleteUser";
 import getUserById from "./users/getUserById";
 import getUsers from "./users/getUsers";
@@ -10,4 +11,5 @@ export function initRoutes() {
   getUserById();
   updateUser();
   deleteUser();
+  createUser();
 }
