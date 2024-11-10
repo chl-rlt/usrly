@@ -24,6 +24,18 @@ export default function updateUser() {
       tags: ["Users"],
     },
     handler: async (request, reply) => {
+      const userExists = await prisma.user.findFirst({
+        where: {
+          id: request.params.id,
+        },
+      });
+      if (!userExists) {
+        throw new Error("User not found");
+      }
+      const cryptedPassword = await hashPassword(
+        request.body.newPassword || ""
+      );
+
       const user = await prisma.user.update({
         where: {
           id: request.params.id,
@@ -35,9 +47,7 @@ export default function updateUser() {
           birthDate: request.body.birthDate
             ? new Date(request.body.birthDate)
             : undefined,
-          password: request.body.newPassword
-            ? await hashPassword(request.body.newPassword)
-            : undefined,
+          password: cryptedPassword,
           updatedAt: new Date(),
         },
       });
