@@ -5,7 +5,7 @@ import { verifyJWT } from "../../plugins/jwt";
 import { hashPassword } from "../../utils";
 import { passwordSchema } from "./schemas";
 const updateUserRequestBody = z.object({
-  email: z.string().email(),
+  email: z.string().email().nullish(),
   firstName: z.string().nullish(),
   lastName: z.string().nullish(),
   birthDate: z.string().nullish(),
@@ -41,7 +41,7 @@ export default function updateUser() {
           id: request.params.id,
         },
         data: {
-          email: request.body.email,
+          email: request.body.email ?? undefined,
           firstName: request.body.firstName,
           lastName: request.body.lastName,
           birthDate: request.body.birthDate
