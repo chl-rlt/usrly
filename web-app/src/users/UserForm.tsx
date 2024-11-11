@@ -19,6 +19,7 @@ import { httpClient } from "../dataProviders/httpClient";
 
 const UserFormToolbar = ({ isCurrentUser }: { isCurrentUser: boolean }) => {
   const record = useRecordContext<User>();
+  const isEditing = Boolean(record);
   const notify = useNotify();
   const sendResetPasswordMail = async (userId: string) => {
     await httpClient(`/v1/auth/send-reset-password-mail`, {
@@ -33,13 +34,14 @@ const UserFormToolbar = ({ isCurrentUser }: { isCurrentUser: boolean }) => {
   return (
     <Toolbar sx={{ justifyContent: "space-between" }}>
       <Box>
-        <SaveButton />
-        {!isCurrentUser && (
+        <SaveButton data-testid="save-button" />
+        {!isCurrentUser && isEditing && (
           <Button
             color="info"
             size="medium"
             sx={{ ml: 2 }}
             variant="outlined"
+            data-testid="reset-password-button"
             onClick={() => {
               sendResetPasswordMail(String(record?.id));
             }}
@@ -122,7 +124,6 @@ const PasswordInputCustom = () => {
               <PasswordInput
                 source="newPassword"
                 label="Password"
-                required
                 validate={validatePassword}
               />
             </Box>
@@ -140,7 +141,6 @@ const PasswordInputCustom = () => {
               <PasswordInput
                 source="password"
                 label="Password"
-                resettable
                 required
                 validate={validatePassword}
               />
@@ -169,6 +169,9 @@ const equalToPassword = (value: string, allValues: any) => {
 };
 
 export const validatePassword = (value: string) => {
+  if (!value) {
+    return undefined;
+  }
   if (value.length < 8) {
     return "The password must be at least 8 characters long";
   }
