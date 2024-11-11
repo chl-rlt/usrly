@@ -6,8 +6,9 @@ User management application build with Fastify and React Admin.
 - <a href="#getting-started-">Getting Started</a>
 -  <a href="#api-features">API Features</a>
 - <a href="#how-to-test-the-api-via-swagger">How to test API via Swagger</a>
-- <a href="#back-office">Back Office</a>
-- <a href="#mocked-email-service">Mock Email Service</a>
+- <a href="#back-office-">Back Office</a>
+- <a href="#data-seeding-">Data Seeding</a>
+- <a href="#mocked-email-service-">Mock Email Service</a>
 
 ## Getting Started 🎯
 
@@ -74,14 +75,26 @@ The API provides the following features:
 3. **Test Protected Routes**:
    - Now you can test protected routes such as `/users` (GET, POST, PUT, DELETE).
 
-# Back office 
+# Back office 👥
 Build with React Admin 
 - Accessible at `http://localhost:5173`
 - To test application you can use test credentials : 
   - Email: `dev@example.com`
   - Password: `dev123`
 
-# Mocked Email Service
+# Data Seeding 🌱
+
+To facilitate testing and development, the project includes a data seeding mechanism using Faker and Prisma Fabbrica. This allows you to generate realistic fake data for the users in the database.
+
+## How Data Seeding Works
+
+- `Faker`: Used to generate realistic user data such as names, emails, and birthdates.
+
+- `Prisma Fabbrica`: A factory library used to create multiple user records easily and efficiently.
+
+- `During the initial setup`, the seeding script will run to populate the database with 31 test users, ensuring that the API and back office have data to work with.
+
+# Mocked Email Service 📧
 The project includes a mocked email service using Nodemailer and Mailpit. This service is used to send emails during user creation and password reset processes.
 
 ### Email Sent During User Creation
