@@ -27,6 +27,6 @@ export async function registerSwagger(server: FastifyInstance) {
   });
 
   await server.register(swaggerUi, {
-    routePrefix: "/api",
+    routePrefix: "/",
   });
 }
