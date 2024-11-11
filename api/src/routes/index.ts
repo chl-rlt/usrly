@@ -1,4 +1,4 @@
-import initAuthRoute from "./auth";
+import initAuthRoute from "./auth/index";
 import createUser from "./users/createUser";
 import deleteUser from "./users/deleteUser";
 import getUserById from "./users/getUserById";
