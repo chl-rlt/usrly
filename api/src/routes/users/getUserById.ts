@@ -25,7 +25,6 @@ export default function getUserById() {
           firstName: true,
           lastName: true,
           birthDate: true,
-          password: true,
         },
       });
       if (!user) {
