@@ -31,6 +31,12 @@ services:
       - HOST=$HOST
       - DATABASE_URL=postgres://$POSTGRES_USER:$POSTGRES_PASSWORD@database:5432/$POSTGRES_DB
       - NODE_ENV=development
+      - JWT_SECRET=$JWT_SECRET
+      - CLIENT_URL=$CLIENT_URL
+      - MAIL_HOST=$MAIL_HOST
+      - MAIL_PORT=$MAIL_PORT
+      - MAIL_SECURE=$MAIL_SECURE
+      - MAIL_FROM=$MAIL_FROM
 
   prisma-migrate:
     <<: *api
@@ -57,6 +63,8 @@ services:
         condition: service_started
     ports:
       - 5173:5173
+    environment:
+      - VITE_API_URL=$VITE_API_URL
 
   mailpit:
     image: axllent/mailpit
