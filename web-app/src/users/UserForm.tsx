@@ -50,7 +50,9 @@ const UserFormToolbar = ({ isCurrentUser }: { isCurrentUser: boolean }) => {
           </Button>
         )}
       </Box>
-      {!isCurrentUser && <DeleteButton mutationMode="pessimistic" />}
+      {!isCurrentUser && (
+        <DeleteButton mutationMode="pessimistic" data-testid="delete-button" />
+      )}
     </Toolbar>
   );
 };
@@ -141,6 +143,7 @@ const PasswordInputCustom = () => {
               <PasswordInput
                 source="password"
                 label="Password"
+                data-testid="password"
                 required
                 validate={validatePassword}
               />
@@ -150,6 +153,7 @@ const PasswordInputCustom = () => {
               <PasswordInput
                 source="passwordConfirm"
                 label="Confirm password"
+                data-testid="password-confirm"
                 validate={equalToPassword}
                 required
                 fullWidth
