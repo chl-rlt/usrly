@@ -71,7 +71,7 @@ The API provides the following features:
    - Use the `/v1/auth/token` endpoint and enter the following credentials:
      - Email: `dev@example.com`
      - Password: `dev123`
-   - Copy the returned token and click the `Authorize` button at the top of Swagger. Enter `Bearer <token>` (replace `<token>` with the resulting JWT).
+   - Copy the returned token and click the `Authorize` button at the top of Swagger.
 3. **Test Protected Routes**:
    - Now you can test protected routes such as `/users` (GET, POST, PUT, DELETE).
 
