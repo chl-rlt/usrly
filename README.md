@@ -82,6 +82,22 @@ Build with React Admin
   - Email: `dev@example.com`
   - Password: `dev123`
 
+## Features 
+
+### User management
+- User List : Overview of all users, displaying information such as surname, first name, email address and date of birth. Each column can be filtered by email and sorted.
+- User Edit : Page used to modify the details of an existing user
+- User creation : Page for adding new users. When a user is created, an email is automatically sent to them so that they can change their password.
+- Password management: Option to update a user's password using one of two methods:
+   - Manually: The administrator can set a new password for the user directly.
+   - Reset by email: Sends a password reset email, allowing the user to choose a new password in complete security.
+- Delete user: Option to delete one or more users
+- Profile Page : Each user has access to a profile page where they can manage their personal information. From this page, users can update data such as their name, email address and, if applicable, their password.
+
+### Authentification 
+- Login page: Interface enabling users to log in to the application using their personal identifiers.
+- Logout
+
 # Data Seeding 🌱
 
 To facilitate testing and development, the project includes a data seeding mechanism using Faker and Prisma Fabbrica. This allows you to generate realistic fake data for the users in the database.
